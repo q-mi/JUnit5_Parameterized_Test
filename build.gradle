@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.9.6"
+}
+
+allure {
+    report {
+        version.set("2.16.1");
+    }
+    adapter {
+        autoconfigure.set(true)
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.16.1")
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'com.codeborne:selenide:6.0.3'
+    testImplementation 'com.opencsv:opencsv:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
